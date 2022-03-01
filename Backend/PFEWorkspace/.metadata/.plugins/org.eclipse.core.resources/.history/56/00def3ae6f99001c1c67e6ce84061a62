@@ -64,11 +64,11 @@ public class Serveur implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getIpAddress() {
+	public String getIpAdress() {
 		return ipAddress;
 	}
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
+	public void setIpAdress(String ipAdress) {
+		this.ipAddress = ipAdress;
 	}
 	public String getMemory() {
 		return memory;

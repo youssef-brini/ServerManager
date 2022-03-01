@@ -68,7 +68,7 @@ public class Serveur implements Serializable{
 		return ipAddress;
 	}
 	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
+		this.ipAddress = ipAdress;
 	}
 	public String getMemory() {
 		return memory;
