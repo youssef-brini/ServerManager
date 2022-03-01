@@ -1,0 +1,59 @@
+package com.altersis.demo.service;
+
+import java.net.InetAddress;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.altersis.demo.entity.Serveur;
+import com.altersis.demo.repository.ServeurRepository;
+@Service
+public class ServeurImpl implements IServeurService{
+
+	@Autowired
+	ServeurRepository serveurRepository;
+	@Override
+	public Serveur addServeur(Serveur serveur) {
+		serveur.setImgURL(setServeurImgURL());
+		return serveurRepository.save(serveur);
+	}
+
+	private String setServeurImgURL() {
+		
+		return null;
+	}
+
+	@Override
+	public Serveur findServeur(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Serveur updateServeur(Serveur serveur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteServeur(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Collection<Serveur> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Serveur pingServeur(String ipAdress) {
+		Serveur serveur = serveurRepository.findByIpAddress(ipAdress);
+		InetAddress adress = InetAddress.getByName(ipAdress);
+		
+		return null;
+	}
+
+}
