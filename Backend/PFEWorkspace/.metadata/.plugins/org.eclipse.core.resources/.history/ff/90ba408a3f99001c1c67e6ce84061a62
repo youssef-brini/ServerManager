@@ -1,0 +1,47 @@
+package com.altersis.demo.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.altersis.demo.entity.Serveur;
+import com.altersis.demo.entity.Status;
+import com.altersis.demo.service.IServeurService;
+@RestController
+public class ServeurController {
+	@Autowired
+	IServeurService serveurService;
+	
+	@GetMapping(value="/serveur/{id}")
+	public Serveur findOneServeurById(@PathVariable Long id){
+
+		return serveurService.findServeur(id);
+	}
+	
+	@GetMapping(value="/serveur/ping/{idAddress}")
+	public String pingServeur(@PathVariable String idAddress) throws IOException{
+		Serveur serveur = serveurService.pingServeur(idAddress);
+		Status state = serveur.getStatus();
+		
+		return state == Status.Server_UP ? "Ping Success": "Ping failed" ;
+	}
+	
+	@PostMapping(value="/serveur")
+	public Serveur addServeur(@RequestBody Serveur s){
+		return serveurService.addServeur(s);
+		}
+	
+	@RequestMapping(value="/serveur", method=RequestMethod.GET)
+	public List<Serveur> findServeurs ()
+	{
+	return serveurService
+	}
+}

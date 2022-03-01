@@ -2,7 +2,7 @@ package com.altersis.demo.service;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class ServeurImpl implements IServeurService{
 	}
 
 	@Override
-	public Collection<Serveur> findAll() {
+	public List<Serveur> findAll() {
 		
 		return serveurRepository.findAll();
 	}
