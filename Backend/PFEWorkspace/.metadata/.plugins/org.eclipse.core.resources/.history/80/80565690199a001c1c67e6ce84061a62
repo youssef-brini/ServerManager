@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +32,12 @@ public class ServeurController {
 		return serveurService.findServeur(id);
 	}
 	
-	@GetMapping(value="/serveur/ping/{idAddress}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/serveur/ping/{idAddress}")
 	public String pingServeur(@PathVariable String idAddress) throws IOException{
 		Serveur serveur = serveurService.pingServeur(idAddress);
 		Status state = serveur.getStatus();
 		
-		return state == Status.Server_UP ? "{  \"response\" : \"Ping Success\" }": "{  \"response\" : \"Ping failed\" }" ;
+		return state == Status.Server_UP ? "Ping Success": "Ping failed" ;
 	}
 	
 	@PostMapping(value="/serveur")

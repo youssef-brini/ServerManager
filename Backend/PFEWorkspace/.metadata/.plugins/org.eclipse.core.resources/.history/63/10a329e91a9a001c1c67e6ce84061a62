@@ -38,7 +38,7 @@ public class ServeurController {
 		Serveur serveur = serveurService.pingServeur(idAddress);
 		Status state = serveur.getStatus();
 		
-		return state == Status.Server_UP ? "{  \"response\" : \"Ping Success\" }": "{  \"response\" : \"Ping failed\" }" ;
+		return state == Status.Server_UP ? "Ping Success": "Ping failed" ;
 	}
 	
 	@PostMapping(value="/serveur")
