@@ -12,7 +12,7 @@ export class ServeurService {
   constructor(private http: HttpClient) {
 
   }
-  getServeurs(): Observable<any[]> {
+  getServeurs(): Observable<Serveur[]> {
     return this.http.get<any>(this.URL + "serveur")
   }
   getPing(ipAddress: string): Observable<any> {

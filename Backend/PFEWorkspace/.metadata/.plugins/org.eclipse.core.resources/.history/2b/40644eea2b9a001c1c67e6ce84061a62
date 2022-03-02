@@ -22,12 +22,12 @@ public class DemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*Serveur s1 = new Serveur("Apache","147.123.0.1","64GB","Web servers","http://localhost:8080/serveur/image/serveur1.png",Status.Server_UP);
-		Serveur s2 = new Serveur("WinSCP","148.123.0.1","64GB","FTP servers","http://localhost:8080/serveur/image/serveur2.png",Status.Server_UP);
-		Serveur s3 = new Serveur("local","127.0.0.1","2To","local servers","http://localhost:8080/serveur/image/serveur3.png",Status.Server_Down);
+		Serveur s1 = new Serveur("Apache","147.123.0.1","64GB","Web servers","",Status.Server_UP);
+		Serveur s2 = new Serveur("WinSCP","148.123.0.1","64GB","FTP servers","",Status.Server_UP);
+		Serveur s3 = new Serveur("local","127.0.0.1","2To","local servers","",Status.Server_Down);
 		serveurService.save(s2);
 		serveurService.save(s1);
-		serveurService.save(s3);*/
+		serveurService.save(s3);
 		
 	}
 

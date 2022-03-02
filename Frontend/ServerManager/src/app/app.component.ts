@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
   }
 PingServeur(ipAddress:string):any{
    this.serverService.getPing(ipAddress).subscribe(data=>{
-    
+    this.getAllServeurs();
     return data;
   })
 
