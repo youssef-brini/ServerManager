@@ -4,9 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { ServeurComponent } from './serveur/serveur.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,8 @@ import { ServeurComponent } from './serveur/serveur.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    CommonModule,
-    FormsModule
+    ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

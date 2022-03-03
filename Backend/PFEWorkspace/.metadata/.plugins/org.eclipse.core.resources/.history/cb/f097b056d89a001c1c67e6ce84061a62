@@ -36,15 +36,9 @@ public class ServeurController {
 	@GetMapping(value="/serveur/ping/{idAddress}" ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public String pingServeur(@PathVariable String idAddress) throws IOException{
 		Serveur serveur = serveurService.pingServeur(idAddress);
-		if(serveur!= null ) {
-			Status state = serveur.getStatus();	
-			return state == Status.Server_UP ? "{  \"response\" : \"Ping Success\" }": "{  \"response\" : \"Ping failed\" }" ;
-		}
-		else
-			return null;
+		Status state = serveur.getStatus();
 		
-		
-		
+		return state == Status.Server_UP ? "{  \"response\" : \"Ping Success\" }": "{  \"response\" : \"Ping failed\" }" ;
 	}
 	
 	@PostMapping(value="/serveur")

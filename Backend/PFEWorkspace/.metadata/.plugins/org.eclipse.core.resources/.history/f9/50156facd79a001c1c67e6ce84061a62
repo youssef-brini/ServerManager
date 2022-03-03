@@ -56,18 +56,15 @@ public class ServeurImpl implements IServeurService{
 	@Override
 	public Serveur pingServeur(String ipAddress) throws IOException {
 		Serveur serveur = serveurRepository.findByIpAddress(ipAddress);
-		try {
-			InetAddress address = InetAddress.getByName(ipAddress);
+		InetAddress address = InetAddress.getByName(ipAddress);
+		if(address != null) {
 			serveur.setStatus(address.isReachable(10000)? Status.Server_UP : Status.Server_Down);
 			serveurRepository.save(serveur);
 			return serveur;
 		}
-		catch(Exception e){
+		else {
 			return null;
 		}
-		
-		
-		
 		
 	}
 

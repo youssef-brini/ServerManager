@@ -22,6 +22,7 @@ export class ServeurService {
     return this.http.get<any>(this.URL + "serveur/" + id);
   }
   addServeur(val: Serveur) {
+    console.log(val);
     return this.http.post(this.URL + "serveur", val);
   }
   deleteServeur(id: number) {

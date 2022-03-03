@@ -3,7 +3,7 @@ import { Status } from '../enum/status.enum';
 import { Serveur } from '../interface/serveur';
 import { DataState } from '../enum/data-state.enum';
 import { ServeurService } from '../service/serveur.service';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-serveur',
@@ -16,11 +16,19 @@ export class ServeurComponent implements OnInit {
   listServeurs:Serveur[] | undefined;
   readonly stat: Status = Status.SERVER_UP;
    pingState = '';
-  constructor(private serverService:ServeurService){
+   serveurDetail !:FormGroup;
+  constructor(private serverService:ServeurService, private formBuilder:FormBuilder){
 
   }
   ngOnInit(): void {
     this.DataState=DataState.LOADED;
+    this.serveurDetail = this.formBuilder.group({
+      ipAddress:[''],
+      name:[''],
+      memory:[''],
+      type:[''],
+      status:['Server_Down']
+    })
     this.getAllServeurs();
   }
   getAllServeurs(){
@@ -36,8 +44,9 @@ PingServeur(ipAddress:string){
   })
 
 }
-AddServeur(serveurForm:NgForm){
-  this.serverService.addServeur(serveurForm.value).subscribe(data=>{
+addServeur(){
+  console.log(this.serveurDetail.value)
+  this.serverService.addServeur(this.serveurDetail.value).subscribe(data=>{
    this.getAllServeurs();
  })
 
