@@ -1,0 +1,110 @@
+
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<hr>
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>IP Address</span></th>
+                                <th><span>Name</span></th>
+                                <th><span>Memory</span></th>
+                                <th><span>Type</span></th>
+                                <th class="text-center"><span>Status</span></th>
+                                <th><span>Ping</span></th>
+                                <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let data of listServeurs">
+                                    <td>
+                                        <img src="{{data.imgURL}}" alt="" width="40" height="40">
+                                        <!-- <a href="#" class="user-link">{{data.name}}</a> -->
+                                        <span class="user-subhead">{{data.ipAddress}}</span>
+                                    </td>
+                                    <td>{{data.name}}</td>
+                                    <td>{{data.memory}}</td>
+                                    <td>{{data.type}}</td>
+                                    
+                                     <td>
+                                        
+                                        <span class="badge badge-success" *ngIf="data.status === stat">
+                                        {{data.status === stat ? 'SERVER UP': '' }}</span>
+                                        <span class="badge badge-danger" *ngIf="data.status !== stat">
+                                            {{data.status !== stat ? 'SERVER DOWN': '' }}</span>
+                                    </td>
+                                    
+                                    <td>
+                                        <a (click)="PingServeur(data.ipAddress)" style="cursor:pointer;">
+                                            <svg *ngIf="data.status === stat" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reception-4" viewBox="0 0 16 16">
+                                                <path d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z"/>
+                                              </svg>
+                                            <svg *ngIf="data.status !== stat" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reception-0" viewBox="0 0 16 16">
+                                                <path d="M0 13.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm4 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm4 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm4 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                                              </svg>
+
+                                        </a>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <a href="#" class="table-link text-warning">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="table-link text-info">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Server Name</th>
+        <th scope="col">Ip Address</th>
+        <th scope="col">Memory</th>
+        <th scope="col">Type</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let data of listServeurs" >
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.name}}</td>
+        <td>{{data.ipAddress}}</td>
+        <td>{{data.memory}}</td>
+        <td>{{data.type}}</td>
+        <td>{{data.status}}</td>
+        <td>
+            <button type="button" class="btn btn-success"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop"(click)="editClick(data)">
+            Edit</button>
+            <button type="button" class="btn btn-danger" (click)="deleteClick(data.id)">Delete</button>
+        </td>
+       
+      </tr>
+    </tbody>
+  </table>  -->
+
