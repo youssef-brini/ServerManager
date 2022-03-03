@@ -44,11 +44,13 @@ PingServeur(ipAddress:string){
   })
 
 }
-addServeur(){
+addServeur() {
   console.log(this.serveurDetail.value)
-  this.serverService.addServeur(this.serveurDetail.value).subscribe(data=>{
-   this.getAllServeurs();
- })
+ 
+    this.serverService.addServeur(this.serveurDetail.value).subscribe(data=>{
+      this.getAllServeurs();
+    })
+  
 
 }
 
