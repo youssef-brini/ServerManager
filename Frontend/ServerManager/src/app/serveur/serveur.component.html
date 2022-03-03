@@ -62,19 +62,19 @@
                                         </a>
                                     </td>
                                     <td style="width: 20%;">
-                                        <a href="#" class="table-link text-warning">
+                                        <a  (click)="editServeur(data)" class="table-link text-warning" data-bs-toggle="modal" data-bs-target="#showServeur">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
-                                        <a href="#" class="table-link text-info">
+                                        <a (click)="editServeur(data)" class="table-link text-info" data-bs-toggle="modal" data-bs-target="#editServeur">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
-                                        <a href="#" class="table-link danger">
+                                        <a (click)="deleteServeur(data.id)" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -98,7 +98,48 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add Server</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="serverNew">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">IP Address</label>
+                  <input type="text" formControlName="ipAddress" class="form-control" id="ipAddress" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Memory</label>
+                    <input type="text" formControlName="memory" class="form-control" id="memory" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Type</label>
+                    <input type="text" formControlName="type" class="form-control" id="type" aria-describedby="emailHelp">
+                  </div>
+               
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="addServeur()" class="btn btn-primary">Add Server</button>
+                </div>
+                
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
+
+  
+  <!-- Edit Serveur -->
+  <div class="modal fade" id="editServeur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Server </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -120,13 +161,9 @@
                     <input type="text" formControlName="type" class="form-control" id="type" aria-describedby="emailHelp">
                   </div>
                
-                <!-- <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" (click)="addServeur()" class="btn btn-primary">Add Server</button>
+                    <button type="button" (click)="updateServeur()" class="btn btn-outline-success">Update Server</button>
                 </div>
                 
               </form>
@@ -137,4 +174,41 @@
   </div>
 
 
-
+<!-- show Serveur -->
+<div class="modal fade" id="showServeur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Show Server </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="serveurDetail">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">IP Address</label>
+                  <input type="text" formControlName="ipAddress" class="form-control" id="ipAddress" aria-describedby="emailHelp"   readonly>
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                  <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Memory</label>
+                    <input type="text" formControlName="memory" class="form-control" id="memory" aria-describedby="emailHelp" readonly>
+                  </div>
+                  <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Type</label>
+                    <input type="text" formControlName="type" class="form-control" id="type" aria-describedby="emailHelp" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">status</label>
+                      <input type="text" formControlName="status" class="form-control" id="status" aria-describedby="emailHelp" readonly>
+                    </div>
+               
+                
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>

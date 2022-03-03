@@ -63,9 +63,12 @@ public class ServeurController {
 		return serveurService.updateServeur(s);
 		}
 	@DeleteMapping(value="/serveur/{id}")
-	public void DeleteServeur(@PathVariable Long id){
-		serveurService.deleteServeur(id);
-		
+	public String DeleteServeur(@PathVariable Long id){
+		if(serveurService.deleteServeur(id))
+		return "Done" ;
+		else {
+			return "we can't acces to this server !!";
+		}
 		}
 	
 	@GetMapping(value="/serveur/image/{fileName}")

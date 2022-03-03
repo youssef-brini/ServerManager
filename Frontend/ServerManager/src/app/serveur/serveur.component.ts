@@ -17,12 +17,22 @@ export class ServeurComponent implements OnInit {
   readonly stat: Status = Status.SERVER_UP;
    pingState = '';
    serveurDetail !:FormGroup;
+   serverNew !:FormGroup;
   constructor(private serverService:ServeurService, private formBuilder:FormBuilder){
 
   }
   ngOnInit(): void {
     this.DataState=DataState.LOADED;
     this.serveurDetail = this.formBuilder.group({
+      id:[''],
+      ipAddress:[''],
+      name:[''],
+      memory:[''],
+      imgURL:[''],
+      type:[''],
+      status:['Server_Down']
+    })
+    this.serverNew = this.formBuilder.group({
       ipAddress:[''],
       name:[''],
       memory:[''],
@@ -45,13 +55,31 @@ PingServeur(ipAddress:string){
 
 }
 addServeur() {
-  console.log(this.serveurDetail.value)
+  console.log(this.serverNew.value)
  
-    this.serverService.addServeur(this.serveurDetail.value).subscribe(data=>{
+    this.serverService.addServeur(this.serverNew.value).subscribe(data=>{
       this.getAllServeurs();
     })
-  
-
+}
+deleteServeur(id:number){
+this.serverService.deleteServeur(id).subscribe(data=>{
+  this.getAllServeurs();
+})
+}
+editServeur(serveur:Serveur){
+  this.serveurDetail.controls['id'].setValue(serveur.id);
+  this.serveurDetail.controls['ipAddress'].setValue(serveur.ipAddress);
+  this.serveurDetail.controls['name'].setValue(serveur.name);
+  this.serveurDetail.controls['memory'].setValue(serveur.memory);
+  this.serveurDetail.controls['type'].setValue(serveur.type);
+  this.serveurDetail.controls['imgURL'].setValue(serveur.imgURL);
+  this.serveurDetail.controls['status'].setValue(serveur.status);
+}
+updateServeur(){
+  console.log(this.serveurDetail.value)
+  this.serverService.updateServeur(this.serveurDetail.value).subscribe(data=>{
+    this.getAllServeurs();
+  })
 }
 
 }
