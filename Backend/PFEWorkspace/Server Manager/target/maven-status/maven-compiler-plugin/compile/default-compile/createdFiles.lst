@@ -1,0 +1,7 @@
+com\altersis\demo\entity\Serveur.class
+com\altersis\demo\repository\ServeurRepository.class
+com\altersis\demo\controller\ServeurController.class
+com\altersis\demo\service\ServeurImpl.class
+com\altersis\demo\service\IServeurService.class
+com\altersis\demo\entity\Status.class
+com\altersis\demo\DemoApplication.class
