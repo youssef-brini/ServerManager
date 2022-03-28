@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class ServeurService {
-  URL: string = "http://10.66.13.89:8080/";
+  URL: string = "http://10.66.13.89:32000/";
   constructor(private http: HttpClient) {
 
   }
